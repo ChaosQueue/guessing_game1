@@ -29,7 +29,7 @@ fn play_game(secret_number: u32) {
         };
 
         print!("Your guess was {}", guess);
-        // Keep track fo the nuber of guesses taken
+        // Keep track of the number of guesses taken
         guess_count = guess_count + 1;
 
         match guess.cmp(&secret_number) {
@@ -51,6 +51,4 @@ fn play_game(secret_number: u32) {
             }
         }
     }
-
-
 }
