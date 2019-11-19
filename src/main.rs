@@ -4,7 +4,11 @@ use rand::Rng;
 
 fn main() {
     println!("Welcome to the Guessing Game!");
-    let secret_number = rand::thread_rng().gen_range(1,101);
+    let my_secret_number = rand::thread_rng().gen_range(1,101);
+    play_game(my_secret_number);
+}
+
+fn play_game(secret_number: u32) {
     let mut lo_num = 1;
     let mut hi_num = 100;
 
@@ -41,4 +45,6 @@ fn main() {
             }
         }
     }
+
+
 }
