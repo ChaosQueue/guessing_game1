@@ -2,15 +2,18 @@ use std::io;
 use std::cmp::Ordering;
 use rand::Rng;
 
+const LO_VAL_INIT: u32 = 1;
+const HI_VAL_INIT: u32 = 100;
+
 fn main() {
     println!("Welcome to the Guessing Game!");
-    let my_secret_number = rand::thread_rng().gen_range(1,101);
+    let my_secret_number = rand::thread_rng().gen_range(LO_VAL_INIT,HI_VAL_INIT+1); // +1 for bounds
     play_game(my_secret_number);
 }
 
 fn play_game(secret_number: u32) {
-    let mut lo_num = 1;
-    let mut hi_num = 100;
+    let mut lo_num = LO_VAL_INIT;
+    let mut hi_num = HI_VAL_INIT;
 
     loop {
         println!("Enter your guess ({} to {}):", lo_num, hi_num);
