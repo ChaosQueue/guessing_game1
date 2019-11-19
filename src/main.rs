@@ -6,12 +6,13 @@ const LO_VAL_INIT: u32 = 1;
 const HI_VAL_INIT: u32 = 100;
 
 fn main() {
-    println!("Welcome to the Guessing Game!");
+    println!("Welcome to the Guessing Game!\nA guess the number game implemented in Rust");
     let my_secret_number = rand::thread_rng().gen_range(LO_VAL_INIT,HI_VAL_INIT+1); // +1 for bounds
     play_game(my_secret_number);
 }
 
 fn play_game(secret_number: u32) {
+    let mut guess_count = 0;
     let mut lo_num = LO_VAL_INIT;
     let mut hi_num = HI_VAL_INIT;
 
@@ -28,6 +29,8 @@ fn play_game(secret_number: u32) {
         };
 
         print!("Your guess was {}", guess);
+        // Keep track fo the nuber of guesses taken
+        guess_count = guess_count + 1;
 
         match guess.cmp(&secret_number) {
             Ordering::Less => {
@@ -43,7 +46,7 @@ fn play_game(secret_number: u32) {
                 }
             },
             Ordering::Equal => {
-                println!(", You win!");
+                println!(", You win!\n(It took you {} guesses)", guess_count);
                 break;
             }
         }
