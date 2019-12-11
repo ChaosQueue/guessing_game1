@@ -7,8 +7,32 @@ const HI_VAL_INIT: u32 = 100;
 
 fn main() {
     println!("Welcome to the Guessing Game!\nA guess the number game implemented in Rust");
-    let my_secret_number = rand::thread_rng().gen_range(LO_VAL_INIT,HI_VAL_INIT+1); // +1 for bounds
-    play_game(my_secret_number);
+    loop {
+        let my_secret_number = rand::thread_rng().gen_range(LO_VAL_INIT,HI_VAL_INIT+1); // +1 for bounds
+        play_game(my_secret_number);
+        println!("Play Again?  y/N");
+        let mut repeat = String::new();
+        match io::stdin().read_line(&mut repeat) {
+            Ok(n) => {
+                //println!("{} bytes read", n);
+                //println!("{}", repeat);
+                if n > 1 {
+                    repeat = repeat.trim().to_lowercase();
+                }
+            }
+            Err(error) => {
+                println!("error: {}", error);
+                break;
+            }
+        }
+
+        if repeat == "y" || repeat == "yes" {
+            continue;
+        }
+        else {
+            break;
+        }
+    }
 }
 
 fn play_game(secret_number: u32) {
